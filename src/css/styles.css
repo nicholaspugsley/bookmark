@@ -1,0 +1,153 @@
+/**
+ * Custom styles for the dashboard
+ * Tailwind handles most styling; this adds polish and interaction states
+ */
+
+/* Smooth transitions globally */
+* {
+  transition-property: background-color, border-color, color, opacity, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent transition on page load */
+.preload * {
+  transition: none !important;
+}
+
+/* Keyboard navigation highlight */
+.link-item.keyboard-highlight {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  background-color: #252525;
+}
+
+/* Drag and drop states */
+.link-item.dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.link-item.drag-over {
+  border-color: #3b82f6 !important;
+  background-color: #1e3a5f;
+}
+
+/* Category collapse animation */
+.category-content {
+  transition: all 200ms ease-out;
+}
+
+.category-content.hidden {
+  display: none;
+}
+
+/* Search highlight */
+mark {
+  background-color: rgba(234, 179, 8, 0.3);
+  color: #fef08a;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Focus states */
+input:focus,
+button:focus {
+  outline: none;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Link hover effects */
+.link-item:hover {
+  transform: translateY(-1px);
+}
+
+.link-item:active {
+  transform: translateY(0);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* Toast notification */
+.toast {
+  animation: slideIn 200ms ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Category header hover */
+.category-header:hover h2 {
+  color: #f3f4f6;
+}
+
+.category-header:hover svg {
+  color: #9ca3af;
+}
+
+/* Grab cursor for draggable items */
+.link-item {
+  cursor: grab;
+}
+
+.link-item:active {
+  cursor: grabbing;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .link-item {
+    cursor: pointer;
+  }
+  
+  /* Disable drag on mobile */
+  .link-item[draggable="true"] {
+    -webkit-user-drag: none;
+  }
+}
+
+/* Favicon fallback */
+.link-item img[src=""] {
+  display: none;
+}
+
+/* Button group styling */
+header button {
+  white-space: nowrap;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(59, 130, 246, 0.4);
+  color: white;
+}
